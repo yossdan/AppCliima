@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700,900&display=swap');
+
+:root {
+    --gradient: linear-gradient(135deg, #72EDF2 10%, #5151E5 100%);
+    --day-bg: linear-gradient(to bottom, #87CEEB, #00BFFF);
+    --night-bg: linear-gradient(to bottom, #2C3E50, #34495E);
+    --rain-color: rgba(174, 194, 224, 0.5);
+    --snow-color: rgba(255, 255, 255, 0.8);
+    --hurricane-bg: linear-gradient(to bottom, #2C3E50, #283747);
+    --cloudy-bg: linear-gradient(to bottom, #393a3b, #90A4AE);
+    /* Gris para nublado o lluvioso */
+    --cloudy-bg: #b0bec5;
+    --snow-bg: #f0f8ff;
+    --hurricane-bg: #4e8e8e;
+    --night-bg: #2c3e50;
+    --day-bg: #f39c12;
+}
+* {
+    box-sizing: border-box;
+    line-height: 1.25em;
+}
+
+.clear {
+    clear: both;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+    background: url('cloud.png'), var(--gradient);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    transition: background 0.5s ease-in-out;
+    animation: animate 60s linear infinite;
+}
+
+@keyframes animate {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+
+
+.container {
+    border-radius: 25px;
+    box-shadow: 0 0 70px -10px rgba(0, 0, 0, 0.2);
+    background-color: #222831;
+    color: #ffffff;
+    height: 400px;
+}
+
+.weather-side {
+    position: relative;
+    height: 100%;
+    border-radius: 25px;
+    width: 300px;
+    float: left;
+    background: var(--day-bg);
+    transition: background 1s ease;
+    transform: translateZ(0) scale(1.02) perspective(1000px);
+    box-shadow: 0 0 20px -10px rgba(0, 0, 0, 0.2);
+}
+
+.weather-side:hover {
+    transform: scale(1.1) perspective(1500px) rotateY(10deg);
+}
+
+.weather-gradient {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: var(--gradient);
+    border-radius: 25px;
+    opacity: 0.4;
+}
+
+.particles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Rain animation */
+.rain-drop {
+    position: absolute;
+    width: 2px;
+    height: 20px;
+    background: var(--rain-color);
+    animation: rain-fall 1s linear infinite;
+    top: -20px;
+}
+
+@keyframes rain-fall {
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+/* Snow animation */
+.snow-flake {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: var(--snow-color);
+    border-radius: 50%;
+    animation: snow-fall 3s linear infinite;
+    top: -5px;
+}
+
+@keyframes snow-fall {
+    to {
+        transform: translateY(100vh) translateX(20px);
+    }
+}
+
+/* Hurricane animation */
+.hurricane {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+    animation: hurricane-effect 1s linear infinite;
+}
+
+@keyframes hurricane-effect {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(720deg);
+    }
+}
+
+/* Night mode */
+.weather-side.night {
+    background: var(--night-bg);
+}
+
+/* Day mode */
+.weather-side.day {
+    background: var(--day-bg);
+}
+
+/* Other existing styles for layout */
+.date-container {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+
+.date-dayname {
+    margin: 0;
+}
+
+.date-day {
+    display: block;
+}
+
+.location {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.location-icon {
+    display: inline-block;
+    height: 0.8em;
+    width: auto;
+    margin-right: 5px;
+}
+
+.weather-container {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+}
+
+.weather-icon img {
+    filter: drop-shadow(0 0 2px #fff);
+    width: 100%;
+}
+
+.weather-temp {
+    margin: 0;
+    font-weight: 700;
+    font-size: 4em;
+}
+
+.weather-desc {
+    margin: 0;
+}
+
+.info-side {
+    position: relative;
+    float: left;
+    height: 100%;
+    padding-top: 25px;
+}
+
+.today-info {
+    padding: 15px;
+    margin: 0 25px 25px 25px;
+    box-shadow: 0 0 50px -5px rgba(0, 0, 0);
+    border-radius: 10px;
+}
+
+.today-info>div:not(:last-child) {
+    margin: 0 0 10px 0;
+}
+
+.today-info>div .title {
+    float: left;
+    font-weight: 700;
+}
+
+.today-info>div .value {
+    float: right;
+}
+
+.week-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 35px;
+    box-shadow: 0 0 50px -5px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.week-list>li {
+    float: left;
+    padding: 15px;
+    cursor: pointer;
+    transition: 200ms ease;
+    border-radius: 10px;
+}
+
+.week-list>li:hover {
+    transform: scale(1.1);
+    background: #fff;
+    color: #222831;
+    box-shadow: 0 0 40px -5px rgba(0, 0, 0, 0.2);
+}
+
+.week-list>li.active {
+    background: #fff;
+    color: #222831;
+    border-radius: 10px;
+}
+
+.week-list>li .day-name {
+    display: block;
+    margin: 10px 0 0 0;
+    text-align: center;
+}
+
+.week-list>li .day-icon {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: auto;
+    margin: 0 auto;
+    font-size: 35px;
+}
+
+.week-list>li .day-icon img {
+    filter: drop-shadow(0 0 2px white);
+}
+
+.week-list>li .day-temp {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.location-container {
+    padding: 25px 35px;
+}
+
+.location-input {
+    position: relative;
+    width: 100%;
+    border: none;
+    border-radius: 25px;
+    padding: 10px;
+    font-family: 'Montserrat', sans-serif;
+    background-image: var(--gradient);
+    color: #000000;
+    font-weight: 700;
+    box-shadow: 0 0 30px -5px rgba(0, 0, 0, 0.25);
+    transition: transform 200ms ease;
+}
+
+.location-input:hover {
+    transform: scale(0.95);
+}
+
+/* Estilo del botón */
+.weather-btn {
+    background: linear-gradient(135deg, #5e5e5e 10%, #d8d3ad 90%);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    font-size: 20px;
+    /* Aumento el tamaño de la fuente */
+    font-family: 'Arial', sans-serif;
+    padding: 15px 40px;
+    /* Más espacio alrededor del texto */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    /* Sombra más prominente */
+    transition: all 0.4s ease-in-out;
+    /* Suavizado general */
+    position: relative;
+    /* Para el efecto de animación de partículas */
+}
+
+/* Icono y texto alineados */
+.weather-btn i {
+    margin-right: 12px;
+    font-size: 26px;
+    /* Ajuste el tamaño del icono */
+}
+
+/* Efecto al hacer hover */
+.weather-btn:hover {
+    background: linear-gradient(135deg, #8298c8 10%, #9b9b9b 90%);
+    transform: translateY(-5px);
+    /* Levanta el botón */
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3);
+    /* Sombra más profunda */
+}
+
+/* Animación de partículas */
+.weather-btn:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    animation: pulse 1.2s infinite;
+}
+
+/* Efecto de pulsación de partículas */
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0;
+    }
+}
+
+.local-time {
+    font-size: 2.5rem;
+    /* Resalta más la hora */
+    text-align: center;
+    /* Centra el texto */
+    letter-spacing: 2px;
+    /* Espaciado entre letras */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    /* Añade profundidad al texto */
+    font-weight: 500;
+    /* Peso de fuente ligero */
+    color: #ffffff;
+    /* Texto blanco para máxima simplicidad */
+    text-transform: uppercase;
+    /* Mayúsculas para modernidad */
+    opacity: 0;
+    transform: translateY(-5px);
+    /* Desplazamiento mínimo inicial */
+    animation: fadeInUp 0.8s ease-out forwards;
+    /* Animación sutil */
+    transition: transform 0.2s ease;
+    /* Transición suave al interactuar */
+}
+
+/* Animación simple para la aparición */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efecto al pasar el cursor (hover) */
+.local-time:hover {
+    color: #f39c12;
+    /* Solo un toque de color al pasar */
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    /* Más profundidad al pasar */
+    transform: translateY(0);
+    /* El texto regresa a su posición normal */
+}
+
+.card-header {
+    position: fixed;
+    /* Fijo en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Abarca todo el ancho */
+    z-index: 1050;
+    /* Garantiza que esté por encima de otros elementos */
+    background: rgba(52, 58, 64, 0);
+    /* Fondo semi-transparente */
+    color: #ffffff;
+    /* Texto blanco */
+    text-align: center;
+    /* Centrado horizontalmente */
+    padding: 10px 0;
+    /* Espaciado arriba y abajo */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0);
+    /* Sombra */
+    pointer-events: none;
+    /* Evita bloquear la interacción con el contenido debajo */
+}
+
+.card-header h1 {
+    pointer-events: auto;
+    /* Permite la interacción solo con el texto dentro del header */
+}
+
+.container {
+    margin-top: 80px;
+    /* Separa el contenido para no superponerlo con el header */
+}

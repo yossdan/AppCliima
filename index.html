@@ -1,0 +1,90 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300">
+<link rel="stylesheet" href="style.css">
+<div class="cloud"></div>
+<div id="ciudad" hidden></div>
+<div class="particles"></div>
+
+<div class="card-header fixed-top d-flex justify-content-center align-items-center bg-dark text-white">
+    <h1 class="local-time" id="hora_local">Hora local:</h1>
+</div>
+<div class="container">
+    <div class="weather-side">
+        <div class="weather-gradient"></div>
+        <div class="date-container">
+            <h2 class="date-dayname"></h2>
+            <span class="date-day"></span>
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="location"></span>
+        </div>
+        <div class="weather-container">
+            <span class="weather-icon"></span>
+            <h1 class="weather-temp"></h1>
+            <h3 class="weather-desc"></h3>
+        </div>
+    </div>
+
+    <div class="info-side">
+        <div class="today-info-container">
+            <div class="today-info">
+                <div class="humidity">
+                    <span class="title"><i class="fa-solid fa-droplet"></i> HUMEDAD</span>
+                    <span class="value"></span>
+                    <div class="clear"></div>
+                </div>
+                <div class="wind">
+                    <span class="title"><i class="fa-solid fa-wind"></i> VIENTO</span>
+                    <span class="value"></span>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="week-container">
+            <ul class="week-list">
+                <li>
+                    <span class="day-name"></span>
+                    <span class="day-temp"></span>
+                    <span class="day-icon"></span>
+                </li>
+                <li>
+                    <span class="day-name"></span>
+                    <span class="day-temp"></span>
+                    <span class="day-icon"></span>
+                </li>
+                <li>
+                    <span class="day-name"></span>
+                    <span class="day-temp"></span>
+                    <span class="day-icon"></span>
+                </li>
+                <li>
+                    <span class="day-name"></span>
+                    <span class="day-temp"></span>
+                    <span class="day-icon"></span>
+                </li>
+                <div class="clear"></div>
+            </ul>
+        </div>
+
+        <div class="location-container d-flex justify-content-center">
+            <input class="location-input form-control" type="text" id="city" value="Tixkokob"
+                placeholder="Ingresa ciudad">
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-3">
+        <button id="local-weather-btn" class="weather-btn">
+            <i class="fas fa-sun"></i> Buscar clima
+        </button>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNvRy8Az-AdbEWt55QMrnwQtg6A9cMbUM" async defer></script>
+<script src="script.js"></script>
